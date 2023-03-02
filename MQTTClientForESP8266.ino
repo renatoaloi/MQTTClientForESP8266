@@ -28,6 +28,8 @@ void setup() {
     delay(500);
     Serial.print(".");
   }
+  Serial.println("");
+  
   client.setServer(mqtt_broker, mqtt_port);
   client.setCallback(callback);
 
@@ -35,6 +37,7 @@ void setup() {
     String client_id = "esp8266-client-";
     client_id += String(WiFi.macAddress());
     Serial.printf("The client %s connects to the public mqtt broker\n", client_id.c_str());
+    Serial.println("");
     if (client.connect(client_id.c_str(), mqtt_username, mqtt_password)) {
       client.publish(topic, "hello emqx");
     } else {
@@ -43,6 +46,7 @@ void setup() {
         delay(2000);
     }
   }
+  Serial.println("");
 }
 
 void loop() {
